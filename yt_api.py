@@ -19,7 +19,7 @@ from settings import API_KEY_PATH, OUTPUT_PATH, CLIENT_SECRET_PATH
 scopes = ['https://www.googleapis.com/auth/youtube.readonly']
 
 
-def youtube_init(debug=False, with_oauth=False):
+def youtube_init(debug=False):
 	# Disable OAuthlib's HTTPS verification when running locally.
 	# *DO NOT* leave this option enabled in production.
 	if not debug:
@@ -27,7 +27,7 @@ def youtube_init(debug=False, with_oauth=False):
 	api_service_name = 'youtube'
 	api_version = 'v3'
 
-	if with_oauth:
+	if USE_OAUTH:
 		client_secrets_file = CLIENT_SECRET_PATH
 
 		# Get credentials and create an API client

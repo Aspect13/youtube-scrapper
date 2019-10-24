@@ -1,5 +1,7 @@
 /.idea/
 /venv/
 /secure/*
+!/secure/readme.txt
 /outputs/*
 /tmp/
+__pycache__/
