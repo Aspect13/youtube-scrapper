@@ -1,18 +1,35 @@
-from main import channel_list, activities, video_info, dump_to_json
+from pymongo import MongoClient
+
+from settings import MONGO_CONNECTION_STRING_PATH
+from yt_api import youtube_init
+from main import store_channel_data, store_activities_data, store_videos_data
+
+
+def main(channel_ids):
+	connection_string = open(MONGO_CONNECTION_STRING_PATH, 'r').read()
+	client = MongoClient(connection_string)
+	db = client.youtube
+
+	yt_instance = youtube_init(debug=True)
+	for channel_id in channel_ids:
+		try:
+			channel_db_id = store_channel_data(db.channels, channel_id, youtube=yt_instance)
+		except IndexError:
+			print('Channel {} does not exist'.format(channel_id))
+			continue
+		store_activities_data(
+			db.activities,
+			channel_id,
+			channel_db_id,
+			youtube=yt_instance,
+			other_activities_collection='activities_other'
+		)
+	store_videos_data(db)
+
 
 if __name__ == '__main__':
-	channel_id = 'UCMCgOm8GZkHp8zJ6l7_hIuA'
-	video_id = '7JrIAY5G7jE'
-	dump_to_json(
-		f'channel_list_{channel_id}',
-		channel_list(channel_id, debug=True)
-	)
-	dump_to_json(
-		f'activities_{channel_id}',
-		activities(channel_id, debug=True)
-	)
-	dump_to_json(
-		f'video_info_{video_id}',
-		video_info(video_id, debug=True)
-	)
-
+	channel_ids = [
+		'UCUbJYQmp_gAQWtaZn0ddO1w',
+		'UCMCgOm8GZkHp8zJ6l7_hIuA',
+	]
+	main(channel_ids)
