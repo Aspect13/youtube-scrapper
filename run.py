@@ -29,7 +29,6 @@ def main(channel_ids):
 
 if __name__ == '__main__':
 	channel_ids = [
-		'UCUbJYQmp_gAQWtaZn0ddO1w',
 		'UCMCgOm8GZkHp8zJ6l7_hIuA',
 	]
 	main(channel_ids)
