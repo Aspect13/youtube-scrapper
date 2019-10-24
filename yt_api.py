@@ -14,7 +14,7 @@ import google_auth_oauthlib.flow
 import googleapiclient.discovery
 import googleapiclient.errors
 
-from settings import API_KEY_PATH, OUTPUT_PATH, CLIENT_SECRET_PATH
+from settings import API_KEY_PATH, OUTPUT_PATH, CLIENT_SECRET_PATH, USE_OAUTH
 
 scopes = ['https://www.googleapis.com/auth/youtube.readonly']
 

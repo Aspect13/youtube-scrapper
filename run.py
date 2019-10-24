@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 from settings import MONGO_CONNECTION_STRING_PATH
 from yt_api import youtube_init
-from main import store_channel_data, store_activities_data, store_videos_data
+from core import store_channel_data, store_activities_data, store_videos_data
 
 
 def main(channel_ids):

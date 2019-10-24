@@ -4,3 +4,4 @@ must have:
 
 can also have:
     client_secret_*.json - oauth json for youtube data api. set USE_OAUTH in settings.py if needed
+
