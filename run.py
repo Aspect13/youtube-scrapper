@@ -22,7 +22,7 @@ def main(channel_ids):
 			channel_id,
 			channel_db_id,
 			youtube=yt_instance,
-			other_activities_collection='activities_other'
+			other_activities_collection=db.activities_other
 		)
 	store_videos_data(db)
 
